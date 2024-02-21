@@ -1,6 +1,8 @@
 const { ApolloServer, gql } = require('apollo-server');
 
 //gql takes schema string and turn it into an object
+//we have to return something from mutation
+
 const typeDefs = gql`
 	type SkiDay {
 		id: ID!
@@ -14,6 +16,10 @@ const typeDefs = gql`
 		HEAVY
 		ICE
 		THIN
+	}
+
+	type Mutation {
+		removeDay(id: ID!): SkiDay!
 	}
 
 	type Query {
