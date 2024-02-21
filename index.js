@@ -6,10 +6,17 @@ const { ApolloServer, gql } = require('apollo-server');
 
 const typeDefs = gql`
 	scalar Date
+	"""
+	An object that describes the characteristics of a ski day
+	"""
 	type SkiDay {
+		"A ski day's unique identifier"
 		id: ID!
+		"The date that ski day occurred"
 		date: Date!
+		"The location where a ski day occurred"
 		mountain: String!
+		"The shape of snow was in when the ski day happened"
 		conditions: Conditions
 	}
 
