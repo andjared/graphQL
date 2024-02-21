@@ -2,8 +2,14 @@ const { ApolloServer, gql } = require('apollo-server');
 
 //gql takes schema string and turn it into an object
 const typeDefs = gql`
+	type SkiDay {
+		id: ID!
+		date: String!
+		mountain: String!
+	}
 	type Query {
 		totalDays: Int!
+		allDays: [SkiDay!]!
 	}
 `;
 
