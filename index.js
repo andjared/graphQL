@@ -1,7 +1,11 @@
 const { ApolloServer, gql } = require('apollo-server');
 
 //gql takes schema string and turn it into an object
-const typeDefs = gql``;
+const typeDefs = gql`
+	type Query {
+		totalDays: Int!
+	}
+`;
 
 //resolvers are functions that return data for the schema
 // const resolvers = {};
