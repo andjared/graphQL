@@ -2,11 +2,13 @@ const { ApolloServer, gql } = require('apollo-server');
 
 //gql takes schema string and turn it into an object
 //we have to return something from mutation
+//customized scalar is customized value/container that is going to be used for a single value (like Date,email, url)
 
 const typeDefs = gql`
+	scalar Date
 	type SkiDay {
 		id: ID!
-		date: String!
+		date: Date!
 		mountain: String!
 		conditions: Conditions
 	}
@@ -19,7 +21,7 @@ const typeDefs = gql`
 	}
 
 	input AddDayInput {
-		date: String!
+		date: Date!
 		mountain: String!
 		conditions: Conditions
 	}
@@ -41,9 +43,15 @@ const typeDefs = gql`
 //server instance - takes two args: typeDefs and resolvers
 //for now mock resolvers - mock data for the schema
 
+//when customizing mocks always going to return data for specific type
+const mocks = {
+	Date: () => '1/2/2025',
+	String: 'Some custom string',
+};
+
 const server = new ApolloServer({
 	typeDefs,
-	mocks: true,
+	mocks,
 });
 
 server.listen().then(({ url }) => console.log(`Server running at ${url}`));
